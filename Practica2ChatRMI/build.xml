@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Practica2ChatRMI" default="todos" basedir=".">
+	<description>Fichero build.xml</description>
+
+	<!-- Propiedades del proyecto... -->
+
+	<!-- Directorios -->
+	<property name="src.dir" value="${basedir}/src/main/java" />
+	<property name="build.dir" value="${basedir}/build" />
+	<property name="doc.dir" value="${basedir}/doc" />
+	<property name="lib.dir" value="${basedir}/lib" />
+
+	<!-- =============== Development Targets ================================= -->
+	<target name="todos" description="Todas las tareas." depends="Borrar, Crear, Compilar, javadoc" />
+
+	<!-- ==================== Target Crear ================================= -->
+	<target name="Crear" description="Crea todos los directorios">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${doc.dir}" />
+	</target>
+
+	<!-- ==================== Target Borrar ==================================== -->
+	<target name="Borrar" description="Elimina todos los directorios.">
+		<delete dir="${build.dir}" />
+		<delete dir="${doc.dir}" />
+	</target>
+
+
+	<!-- ==================== Target Compilar ==================================== -->
+	<target name="Compilar" depends="Crear" description="Compila la solucion completa.">
+		<javac encoding="UTF-8" srcdir="${src.dir}" destdir="${build.dir}" source="1.8" target="1.8" includeantruntime="false" />
+	</target>
+	
+	<!-- ==================== Target GenerarDoc ==================================== -->
+	<target name="javadoc" depends="Crear" description="Genera la documentacion javadoc de la aplicación.">
+		<javadoc sourcepath="${src.dir}" destdir="${doc.dir}" packagenames="*"/>
+	</target>	
+
+</project>
